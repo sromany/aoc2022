@@ -77,8 +77,8 @@ impl From<char> for Outcome {
 
 fn parse<T1: From<char>, T2: From<char>>(input: String) -> Vec<(T1, T2)> {
     let mut lines = input.lines();
-    let mut has_end: bool = false;
     let mut janken_games: Vec<(T1, T2)> = Vec::<(T1, T2)>::new();
+    let mut has_end: bool = false;
     while !has_end {
         if let Some(line) = lines.next() {
             eprintln!("{:?}", line.trim());
