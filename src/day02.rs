@@ -139,3 +139,66 @@ fn create_games_from_strategy_guide(
     return games;
 }
 // ==================================================================================
+
+#[cfg(test)]
+mod tests {
+    use crate::day02;
+    const URL: &str = "https://adventofcode.com/2022/day/2/input";
+
+    #[test]
+    fn test_01_part_one() {
+        let input = "A Y
+        B X
+        C Z";
+
+        let result = day02::part_one(input);
+
+        assert_eq!(result, 15)
+    }
+
+    #[test]
+    fn test_02_part_one() -> Result<(), Box<dyn std::error::Error>> {
+
+        let client = reqwest::blocking::Client::new();
+        let response = client.get(URL)
+        .header("cookie", crate::util::get_auth_cookie_session_from_envfile())
+        .send().expect("Unable to get from url");
+
+        let input = response.text().expect("Unable to retrieve text from response");
+        eprintln!("{}", input);
+
+        let result = day02::part_one(input);
+        eprintln!("{}", result);
+
+        assert_eq!(result, 11475);
+        Ok(())
+    }
+
+    #[test]
+    fn test_03_part_two() {
+        let input = "A Y
+        B X
+        C Z";
+
+        let result = day02::part_two(input);
+
+        assert_eq!(result, 12)
+    }
+
+    #[test]
+    fn test_04_part_two() -> Result<(), Box<dyn std::error::Error>> {
+        let client = reqwest::blocking::Client::new();
+        let response = client.get(URL)
+        .header("cookie", crate::util::get_auth_cookie_session_from_envfile())
+        .send().expect("Unable to get from url");
+
+        let input = response.text().expect("Unable to retrieve text from response");
+        eprintln!("{}", input);
+
+        let result = day02::part_two(input);
+        eprintln!("{}", result);
+
+        assert_eq!(result, 16862);
+        Ok(())
+    }
+}

@@ -84,3 +84,74 @@ pub fn part_two<S: Into<String>>(input: S) -> usize {
     }
     sum_of_badge_priority
 }
+
+
+#[cfg(test)]
+mod tests {
+    use crate::day03;
+    const URL: &str = "https://adventofcode.com/2022/day/3/input";
+
+    #[test]
+    fn test_01_part_one() {
+        let input = "AvJrwpWtwJgWrhcsFMMfFFhFp
+        jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+        PmmdzqPrVvPwwTWBwg
+        wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+        ttgJtRGJQctTZtZT
+        CrZsJsPPZsGzwwsLwLmpwMDw";
+
+        let result = day03::part_one(input);
+
+        assert_eq!(result, 157)
+    }
+
+    #[test]
+    // #[ignore = "Not implemented"]
+    fn test_02_part_one() -> Result<(), Box<dyn std::error::Error>> {
+        let client = reqwest::blocking::Client::new();
+        let response = client.get(URL)
+        .header("cookie", crate::util::get_auth_cookie_session_from_envfile())
+        .send().expect("Unable to get from url");
+
+        let input = response.text().expect("Unable to retrieve text from response");
+        eprintln!("{}", input);
+
+        let result = day03::part_one(input);
+        eprintln!("{}", result);
+
+        assert_eq!(result, 8153);
+        Ok(())
+    }
+
+    #[test]
+    fn test_03_part_one() {
+        let input = "AvJrwpWtwJgWrhcsFMMfFFhFp
+        jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+        PmmdzqPrVvPwwTWBwg
+        wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+        ttgJtRGJQctTZtZT
+        CrZsJsPPZsGzwwsLwLmpwMDw";
+
+        let result = day03::part_two(input);
+
+        assert_eq!(result, 70)
+    }
+
+    #[test]
+    // #[ignore = "Not implemented"]
+    fn test_04_part_two() -> Result<(), Box<dyn std::error::Error>> {
+        let client = reqwest::blocking::Client::new();
+        let response = client.get(URL)
+        .header("cookie", crate::util::get_auth_cookie_session_from_envfile())
+        .send().expect("Unable to get from url");
+
+        let input = response.text().expect("Unable to retrieve text from response");
+        eprintln!("{}", input);
+
+        let result = day03::part_two(input);
+        eprintln!("{}", result);
+
+        assert_eq!(result, 2342);
+        Ok(())
+    }
+}

@@ -65,3 +65,72 @@ pub fn part_two<S: Into<String>>(input: S) -> usize {
     }
     number_of_total_overlaping
 }
+
+#[cfg(test)]
+mod tests {
+    use crate::day04;
+    const URL: &str = "https://adventofcode.com/2022/day/4/input";
+
+    #[test]
+    fn test_01_part_one() {
+        let input = "2-4,6-8
+        2-3,4-5
+        5-7,7-9
+        2-8,3-7
+        6-6,4-6
+        2-6,4-8";
+
+        let result = day04::part_one(input);
+
+        assert_eq!(result, 2)
+    }
+
+    #[test]
+    // #[ignore = "Not implemented"]
+    fn test_02_part_one() -> Result<(), Box<dyn std::error::Error>> {
+        let client = reqwest::blocking::Client::new();
+        let response = client.get(URL)
+        .header("cookie", crate::util::get_auth_cookie_session_from_envfile())
+        .send().expect("Unable to get from url");
+
+        let input = response.text().expect("Unable to retrieve text from response");
+        eprintln!("{}", input);
+
+        let result = day04::part_one(input);
+        eprintln!("{}", result);
+
+        assert_eq!(result, 530);
+        Ok(())
+    }
+
+    #[test]
+    fn test_03_part_two() {
+        let input = "2-4,6-8
+        2-3,4-5
+        5-7,7-9
+        2-8,3-7
+        6-6,4-6
+        2-6,4-8";
+
+        let result = day04::part_two(input);
+        assert_eq!(result, 4)
+    }
+
+    #[test]
+    // #[ignore = "Not implemented"]
+    fn test_04_part_two() -> Result<(), Box<dyn std::error::Error>> {
+        let client = reqwest::blocking::Client::new();
+        let response = client.get(URL)
+        .header("cookie", crate::util::get_auth_cookie_session_from_envfile())
+        .send().expect("Unable to get from url");
+
+        let input = response.text().expect("Unable to retrieve text from response");
+        eprintln!("{}", input);
+
+        let result = day04::part_two(input);
+        eprintln!("{}", result);
+
+        assert_eq!(result, 0);
+        Ok(())
+    }
+}
