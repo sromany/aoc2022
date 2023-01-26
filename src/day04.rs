@@ -1,5 +1,3 @@
-use std::ops::RangeBounds;
-
 struct Section {
     start: usize,
     end: usize
@@ -22,7 +20,7 @@ impl From<&str> for Section {
     fn from(s: &str) -> Self {
         Self {
             start: s.split("-").nth(0).expect("Cannot get 1st splitted range").parse::<usize>().unwrap(),
-            end: s.split("-").nth(1).expect("Cannot get 1st splitted range").parse::<usize>().unwrap(),
+            end: s.split("-").nth(1).expect("Cannot get 2nd splitted range").parse::<usize>().unwrap(),
         }
     }
 }
@@ -130,7 +128,7 @@ mod tests {
         let result = day04::part_two(input);
         eprintln!("{}", result);
 
-        assert_eq!(result, 0);
+        assert_eq!(result, 903);
         Ok(())
     }
 }

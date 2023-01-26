@@ -9,3 +9,4 @@ edition = "2021"
 reqwest = { version = "0.11.13", features = ["blocking"] }
 counter = "0.5.7"
 envfile = "0.2.1"
+regex = { version = "1.7.0", features = ["std"] }
